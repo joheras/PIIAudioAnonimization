@@ -11,7 +11,7 @@ This project requires Python 3.8+ and `ffmpeg` installed on your system.
 Install the required Python packages:
 
 ```bash
-pip install whisperx nemo_toolkit[asr] librosa torch transformers pydub gradio soundfile numpy tqdm qwen-asr
+pip install whisperx nemo_toolkit[asr] librosa torch transformers pydub gradio soundfile numpy tqdm qwen-asr presidio-analyzer
 ```
 
 **Note**: `whisperx` ,`nemo_toolkit`, and `qwen-asr` might have specific installation instructions depending on your CUDA version. Please refer to their official documentation.
@@ -41,7 +41,7 @@ python pii_audio_anonimization.py <input_audio_file> <output_audio_file> [option
 - `output_file`: Path to the output audio file (required).
 - `--framework`: Transcription framework to use. Options: `whisperx` (default), `nemo`, `qwen3asr`.
 - `--model`: Transcription model name. Default: `large-v3`.
-- `--anonymizer`: Anonymization method. Default: `eu-pii-safeguard`.
+- `--anonymizer`: Anonymization method. Options: `eu-pii-safeguard` (default), `presidio`.
 - `--align-model`: Alignment model (for WhisperX). Optional.
 - `--token`: Hugging Face token (required for some models like `pyannote/speaker-diarization`).
 - `--device`: Device to use. Default: `cuda`.
@@ -84,3 +84,5 @@ This will launch a web interface where you can:
 Currently, the tool supports:
 
 - **eu-pii-safeguard**: Uses the `tabularisai/eu-pii-safeguard` model to detect PII entities such as names, locations, ID numbers, etc., in the transcription. These detected entities are then mapped back to the audio timestamps and replaced with a beep sound.
+
+- **presidio**: Uses the presidio library to detect PII entities. 

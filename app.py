@@ -52,7 +52,7 @@ with gr.Blocks(title="PII Audio Anonymization") as demo:
                     label="Transcription Framework"
                 )
                 model_input = gr.Dropdown(choices=["large-v3", "large-v2", "medium", "small", "base", "tiny"], value="large-v3", label="Transcription Model", allow_custom_value=True)
-                anonymizer_input = gr.Textbox(value="eu-pii-safeguard", label="Anonymizer Method")
+                anonymizer_input = gr.Dropdown(choices=["eu-pii-safeguard", "presidio"], value="eu-pii-safeguard", label="Anonymizer Method")
                 align_model_input = gr.Textbox(value=None, label="Alignment Model (Optional)")
                 token_input = gr.Textbox(label="Hugging Face Token", type="password", placeholder="Required for some models")
             
