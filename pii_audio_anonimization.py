@@ -7,7 +7,8 @@ from modules import (
     TranscribeAndAlignWhisperX,
     TranscribeAndAlignQwen3ASR,
     EUPIISafeguard,
-    Presidio
+    Presidio,
+    OpenMed,
     audio_anonymisation
 )
 
@@ -50,6 +51,8 @@ def entities_to_anonimize(transcription,anonymizerMethod="eu-pii-safeguard",pii_
         anonymizer = EUPIISafeguard(transcription,pii_types_to_detect,**kwargs)
     elif(anonymizerMethod=='presidio'):
         anonymizer = Presidio(transcription,pii_types_to_detect,**kwargs)
+    elif(anonymizerMethod=='openmed'):
+        anonymizer = OpenMed(transcription,pii_types_to_detect,**kwargs)
     else:
         raise Exception("Not supported method")
     
